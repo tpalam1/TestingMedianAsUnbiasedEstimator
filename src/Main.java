@@ -138,7 +138,7 @@ public class Main {
      * @throws RuntimeException if either input is less than 1, or if the population size is smaller than the sample.
      */
     public static boolean runTrial(int POPULATION_SIZE, int SAMPLE_SIZE){
-        if(POPULATION_SIZE <= 0 || SAMPLE_SIZE <= 0 || POPULATION_SIZE < SAMPLE_SIZE){
+        if(SAMPLE_SIZE <= 0 || POPULATION_SIZE < SAMPLE_SIZE){
             throw new RuntimeException("At least one of the inputs is less than 1, or the population size is smaller than the sample.");
         }
 
@@ -154,11 +154,7 @@ public class Main {
         // Calculate the population mean
         double popMean = getAverage(population);
 
-        if(sampleMedian > popMean){
-            return true;
-        } else {
-            return false;
-        }
+        return sampleMedian > popMean;
     }
 
     /**
@@ -181,8 +177,8 @@ public class Main {
 
         if(size % 2 == 0)
         {
-            double a1 = (double)arr.get(HALF_SIZE_LOWER_BOUND);
-            double a2 = (double)arr.get(HALF_SIZE_UPPER_BOUND);
+            double a1 = arr.get(HALF_SIZE_LOWER_BOUND);
+            double a2 = arr.get(HALF_SIZE_UPPER_BOUND);
 
             return getAverage(a1, a2);
         } // IF even? find the middle two values + average them!
@@ -217,7 +213,7 @@ public class Main {
             throw new RuntimeException("Population size cannot be less than 1!");
         }
 
-        ArrayList<Double> output = new ArrayList<Double>();
+        ArrayList<Double> output = new ArrayList<>();
 
         for(int i = 0; i < populationSize; i++){
             double randRating = getRandDouble(0, 100);
